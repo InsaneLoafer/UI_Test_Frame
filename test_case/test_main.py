@@ -1,10 +1,15 @@
 import pytest
 import yaml
+from test_case.test_base import TestBase
 
-from page.app import App
 
-class TestMain:
+class TestMain(TestBase):
+
+    @pytest.mark.skip
     @pytest.mark.parametrize("value1, value2", yaml.safe_load(open("../test_case/test_main.yaml")))
     def test_main(self, value1, value2):
-        app = App()
-        app.start().main().goto_search()
+        self.app.start().main().goto_search()
+        print(value1, value2)
+
+    def test_windows(self):
+        self.app.start().main().goto_windows()

@@ -1,3 +1,4 @@
+import yaml
 from appium import webdriver
 from page.base_page import BasePage
 from page.main import Main
@@ -20,8 +21,9 @@ class App(BasePage):
             caps["appPackage"] = self._package
             caps["appActivity"] = self._activity
             caps["noReset"] = True
+            caps["udid"] = yaml.safe_load(open("../page/configuration.yaml"))["caps"]["udid"]
             # 初始化driver
-            self._driver = webdriver.Remote("http://loca1host:4723/wd/hub", caps)
+            self._driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", caps)
         else:
             self._driver.start_activity(app_package=self._package, app_activity=self._activity)
         self._driver.implicitly_wait(3)
