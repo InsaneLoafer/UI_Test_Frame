@@ -1,6 +1,5 @@
-from selenium.webdriver.common.by import By
-from page.base_page import BasePage
 
+from page.base_page import BasePage
 
 class Main(BasePage):
     def goto_search(self):
@@ -8,4 +7,5 @@ class Main(BasePage):
         进入搜索
         :return:
         """
-        self.find(By.ID, "tv_search").click()
+        # self.find(By.ID, "tv_search").click()
+        self.steps("../page/main.yaml")
